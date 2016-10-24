@@ -1,0 +1,31 @@
+{
+  "name": "eleon/awesome-apis",
+  "description": "lumen providers for awesome apis",
+  "keywords": [
+    "provider",
+    "laravel",
+    "lumen",
+    "apis"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Erasmo León",
+      "email": "erasmo.lele@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^5.5.9 || ^7.0",
+    "illuminate/support": "^5.0",
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8 || ^5.0",
+    "graham-campbell/testbench": "^3.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Eleon\\AwesomeApis\\": "src/"
+    }
+  }
+}
