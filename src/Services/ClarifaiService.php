@@ -4,10 +4,10 @@ namespace Eleon\AwesomeApis\Services;
 
 use GuzzleHttp\Client;
 
-class TwitterService
+class ClarifaiService
 {
     private $client;
-    private $apiUrl = 'https://api.twitter.com';
+    private $apiUrl = 'https://api.clarifai.com';
     private $token;
 
     public function __construct($clientId, $clientPassword)
@@ -18,13 +18,12 @@ class TwitterService
 
     public function authentication($clientId, $clientPassword)
     {
-        $request = $this->client->request('POST', "$this->apiUrl/oauth2/token", [
+        $request = $this->client->request('POST', "$this->apiUrl/v1/token/", [
             'form_params' => [
                 'grant_type' => 'client_credentials'
             ],
             'auth' => [
-                $clientId,
-                $clientPassword
+                $clientId, $clientPassword
             ]
         ]);
 
@@ -33,19 +32,16 @@ class TwitterService
         $this->token = $data->access_token;
     }
 
-    public function searchTweets($query, $count = 10)
+    public function searchEntitiesByUrl($url, $model = 'general-v1.3', $lang = 'es')
     {
-        $request = $this->client->request('GET', "$this->apiUrl/1.1/search/tweets.json?q=$query&count=$count",
+        $request = $this->client->request('GET', "$this->apiUrl/v1/tag/?language=$lang&model=$model&url=$url",
             [
                 'headers' => [
                     'Authorization' => "Bearer $this->token"
                 ]
             ]
         );
-        $tweets = json_decode($request->getBody());
-        return array_map(function ($tweet) {
-            return $tweet->text;
-        }, $tweets->statuses);
+        $data = json_decode($request->getBody());
+        $data->results->result->tag->classes;
     }
-
 }

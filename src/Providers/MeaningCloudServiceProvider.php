@@ -9,8 +9,8 @@ class MeaningCloudServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton('AwesomeApis\MeaningCloudService', function () {
-            return new MeaningCloudService(config('meaningCloudSecretKey'));
+        $this->app->singleton('MeaningCloudService', function () {
+            return new MeaningCloudService(env('MEANING_CLOUD_SECRET_KEY'));
         });
     }
 }
