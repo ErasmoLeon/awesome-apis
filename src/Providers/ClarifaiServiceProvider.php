@@ -9,7 +9,7 @@ class ClarifaiServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton('TwitterService', function () {
+        $this->app->singleton('ClarifaiService', function () {
             return new ClarifaiService(env('CLARIFAI_CLIENT_ID'), env('CLARIFAI_CLIENT_PASSWORD'));
         });
     }

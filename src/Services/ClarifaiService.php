@@ -42,6 +42,6 @@ class ClarifaiService
             ]
         );
         $data = json_decode($request->getBody());
-        $data->results->result->tag->classes;
+        return $data->results[0]->result->tag->classes;
     }
 }
